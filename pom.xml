@@ -11,6 +11,7 @@
     <modules>
         <module>bank-account</module>
         <module>cqrs-es</module>
+        <module>infrastructure</module>
     </modules>
 
     <parent>
