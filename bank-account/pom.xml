@@ -13,6 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>account-cmd</module>
+        <module>account-common</module>
+        <module>account-query</module>
     </modules>
 
 </project>
