@@ -10,5 +10,9 @@
     </parent>
 
     <artifactId>cqrs-es</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>cqrs-core</module>
+    </modules>
 
 </project>
