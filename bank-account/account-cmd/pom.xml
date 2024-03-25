@@ -38,5 +38,15 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.techbank</groupId>
+            <artifactId>cqrs-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.techbank</groupId>
+            <artifactId>account-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>
