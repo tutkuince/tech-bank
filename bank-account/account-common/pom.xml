@@ -27,5 +27,10 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.techbank</groupId>
+            <artifactId>cqrs-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>
