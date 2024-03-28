@@ -7,6 +7,7 @@ import com.techbank.cqrs.core.event.EventModel;
 import com.techbank.cqrs.core.exception.AggregateNotFoundException;
 import com.techbank.cqrs.core.exception.ConcurrencyException;
 import com.techbank.cqrs.core.infrastructure.EventStore;
+import com.techbank.cqrs.core.producer.EventProducer;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -16,10 +17,12 @@ import java.util.stream.Collectors;
 @Service
 public class AccountEventStore implements EventStore {
 
-    private EventStoreRepository eventStoreRepository;
+    private final EventStoreRepository eventStoreRepository;
+    private final EventProducer eventProducer;
 
-    public AccountEventStore(EventStoreRepository eventStoreRepository) {
+    public AccountEventStore(EventStoreRepository eventStoreRepository, EventProducer eventProducer) {
         this.eventStoreRepository = eventStoreRepository;
+        this.eventProducer = eventProducer;
     }
 
     @Override
@@ -42,8 +45,8 @@ public class AccountEventStore implements EventStore {
                     .build();
 
             EventModel persistentEvent = eventStoreRepository.save(eventModel);
-            if (persistentEvent != null) {
-                // TODO: produce event to Kafka
+            if (!persistentEvent.getId().isEmpty()) {
+                eventProducer.produce(event.getClass().getSimpleName(), event);
             }
         }
     }
