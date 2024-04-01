@@ -39,7 +39,7 @@ public abstract class AggregateRoot {
         try {
             var method = getClass().getDeclaredMethod("apply", event.getClass());
             method.setAccessible(true);
-            method.invoke(true, event);
+            method.invoke(this, event);
         } catch (NoSuchMethodException e) {
             logger.log(Level.WARNING, MessageFormat.format("The apply method was not found in the aggregate for {0}", event.getClass().getName()));
         } catch (Exception e) {
