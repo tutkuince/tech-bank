@@ -32,7 +32,7 @@ public class CloseAccountController {
     public ResponseEntity<BaseResponse> closeAccount(@PathVariable String id) {
         try {
             commandDispatcher.send(new CloseAccountCommand(id));
-            return ResponseEntity.status(HttpStatus.OK).body(new BaseResponse("Ban account closure request successfully completed!"));
+            return ResponseEntity.status(HttpStatus.OK).body(new BaseResponse("Bank account closure request successfully completed!"));
         } catch (IllegalStateException | AggregateNotFoundException e) {
             logger.log(Level.WARNING, MessageFormat.format("Client made a bad request - {0}", e.toString()));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new BaseResponse(e.toString()));
