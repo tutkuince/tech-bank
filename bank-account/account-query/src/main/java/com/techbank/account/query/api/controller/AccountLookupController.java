@@ -7,7 +7,6 @@ import com.techbank.account.query.api.query.FindAccountByIdQuery;
 import com.techbank.account.query.api.query.FindAccountWithBalanceQuery;
 import com.techbank.account.query.api.query.FindAllAccountsQuery;
 import com.techbank.account.query.domain.BankAccount;
-import com.techbank.cqrs.core.domain.BaseEntity;
 import com.techbank.cqrs.core.infrastructure.QueryDispatcher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
