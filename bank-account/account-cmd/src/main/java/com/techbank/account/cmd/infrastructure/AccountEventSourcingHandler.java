@@ -6,6 +6,7 @@ import com.techbank.cqrs.core.event.BaseEvent;
 import com.techbank.cqrs.core.handler.EventSourcingHandler;
 import com.techbank.cqrs.core.infrastructure.EventStore;
 import com.techbank.cqrs.core.producer.EventProducer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -14,6 +15,9 @@ import java.util.Optional;
 
 @Service
 public class AccountEventSourcingHandler implements EventSourcingHandler<AccountAggregate> {
+
+    @Value("${spring.kafka.topic}")
+    private String topic;
     private final EventStore eventStore;
     private final EventProducer eventProducer;
 
@@ -48,7 +52,7 @@ public class AccountEventSourcingHandler implements EventSourcingHandler<Account
             if (aggregate == null ||!aggregate.getActive()) continue;
             List<BaseEvent> events = eventStore.getEvents(aggregateId);
             for (BaseEvent event: events) {
-                eventProducer.produce(event.getClass().getSimpleName(), event);
+                eventProducer.produce(topic, event);
             }
         }
     }
